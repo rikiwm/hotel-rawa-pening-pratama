@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('value')->nullable();
             $table->string('sub_value')->nullable();
+            $table->string('url_profile')->nullable();
             $table->string('icon')->nullable();
+            $table->string('group_name')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

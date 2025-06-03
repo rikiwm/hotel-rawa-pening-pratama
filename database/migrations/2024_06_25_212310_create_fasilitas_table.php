@@ -14,10 +14,8 @@ return new class extends Migration
         Schema::create('fasilitas', function (Blueprint $table) {
             $table->id();
             $table->string('name_fasilitas');
-            $table->json('image_fasilitas')->nullable();
             $table->string('icon_fasilitas')->nullable();
             $table->string('slug');
-            $table->json('tag')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
