@@ -10,6 +10,7 @@ use App\Models\Room;
 use App\Models\RoomInclude;
 use App\Models\Tag;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -37,7 +38,7 @@ class RoomResource extends Resource
     protected static ?string $model = Room::class;
     protected static int $globalSearchResultsLimit = 5;
     protected static ?string $navigationIcon = 'heroicon-o-building-office';
-    protected static ?string $navigationLabel = 'Rooms & Villas';
+    protected static ?string $navigationLabel = 'Rooms & Villa';
 
     public static function form(Form $form): Form
     {
@@ -57,7 +58,7 @@ class RoomResource extends Resource
                                 Split::make([
 
                                 Section::make([
-                                    TextInput::make('name_room')->placeholder('Ex : Agung')->label('Rooms or Villas Name')->required()->autocapitalize('words')
+                                    TextInput::make('name_room')->placeholder('Ex : Agung')->label('Villa or Room Name')->required()->autocapitalize('words')
                                         ->maxLength(255),
                                         TextInput::make('price')->placeholder('350000')->integer()->prefix('Rp.')
                                         ->maxLength(255),
@@ -74,11 +75,14 @@ class RoomResource extends Resource
                                 Tabs\Tab::make('Images')
                                 ->schema([
                                     Section::make([
-                                    SpatieMediaLibraryFileUpload::make('room')->label('Photos Rooms or Villas')
+                                    SpatieMediaLibraryFileUpload::make('room')->label('Upload Villa/Room Photos')
                                     ->disk('public')
                                     ->collection('rooms')
                                     ->image()
-                                    ->multiple(),
+                                    ->panelLayout('grid')
+                                    ->multiple()
+                                    ->reorderable()
+                                    ->appendFiles()
                                 ]),
                                 ]),
                                 Tabs\Tab::make('Meta Seo')
@@ -88,25 +92,25 @@ class RoomResource extends Resource
                                     ->multiple()
                                     ->options(Tag::all()->pluck('name_tag', 'id'))
                                     ->createOptionForm([]),
-                                    TextInput::make('seo_title')->placeholder('')->suffixIcon('heroicon-m-home'),
-                                    Textarea::make('seo_description')->placeholder('')->columnSpanFull(),
+                                    TextInput::make('seo_title')->label('Meta Title')->suffixIcon('heroicon-m-home'),
+                                    Textarea::make('seo_description')->label('Meta Description')->columnSpanFull(),
 
                                 ]),
                                 ]),
                                 Tabs\Tab::make('Location')
                                 ->schema([
                                     Section::make([
-                                    Textarea::make('description')->rows(1)->placeholder('Ex : Best Rooms')->columnSpanFull(),
-                                    Textarea::make('location')->minLength(2)->rows(4)->placeholder('Ex : Jln')->columnSpanFull(),
+                                    RichEditor::make('description')->placeholder('Ex : Best Rooms')->columnSpanFull(),
+                                    Textarea::make('location')->minLength(2)->rows(2)->placeholder('Ex : Jln')->columnSpanFull(),
                                 ]),
                                 ]),
 
                     ])->columnSpan('2')->contained(false),
-                    Fieldset::make('ROOMS OR VILLAS')
+                    Fieldset::make('VILLA OR ROOM ')
                     ->schema([
                         Section::make([
-                            CheckboxList::make('room_fasilitas')->label('Include this Rooms')->options(RoomInclude::all()->pluck('name', 'id'))->columns(12),
-                            ToggleButtons::make('is_active')->label('Publis this Rooms?')->boolean()->inline(false)->required()->columnStart('2')->grouped(),
+                            CheckboxList::make('room_fasilitas')->label('Include this Room')->options(RoomInclude::all()->pluck('name', 'id'))->columns(12),
+                            ToggleButtons::make('is_active')->label('Publis this Room?')->boolean()->inline(false)->required()->columnStart('2')->grouped(),
                             ])
                         ])
                     ]);

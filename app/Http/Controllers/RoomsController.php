@@ -22,14 +22,14 @@ class RoomsController extends Controller
         $selectedSort = url('rooms');
         $sorts = [
             url('rooms') => 'Sort by ',
-            url('rooms?sort=type_room-asc') => 'Sort by Type Rooms',
-            url('rooms?sort=type_room-desc') => 'Sort by Type Villas',
+            url('rooms?sort=type_room-desc') => 'Sort by Type Villa',
+            url('rooms?sort=type_room-asc') => 'Sort by Type Room',
             url('rooms?sort=name_room-desc') => 'Sort by Z to A',
         ];
         $query = $this->_sortrooms($query, $request);
 
         $rooms = $query->paginate(4);
-        $titel = 'Room and Villas';
+        $titel = 'Villa & Room';
         return view('frontend.rooms.index', compact('titel', 'rooms', 'selectedSort', 'sorts'));
     }
 

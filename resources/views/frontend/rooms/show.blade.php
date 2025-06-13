@@ -8,6 +8,12 @@
     @include('layout.bredcumb')
 @endsection
 @section('content')
+<style>
+.swiper-vertical {
+  height: 600px;
+  overflow-y: auto;
+}
+</style>
     <section class="wrapper bg-light">
         <div class="container py-7 py-md-8">
             <div class="row gx-md-8 gx-xl-12 gy-8">
@@ -16,7 +22,6 @@
                     <div class="swiper-container swiper-thumbs-container" data-margin="10" data-dots="false" data-nav="true"
                         data-thumbs="true">
                         <div class="row">
-
                             <div class="col-lg-10 col-12">
                                 <div class="swiper">
                                     <div class="swiper-wrapper">
@@ -26,7 +31,7 @@
                                                 <figure class="rounded p-2"><img src="{{ $item }}"
                                                         srcset="{{ $item }} 2x" alt="hotel"
                                                         style="height: 600px !important; object-fit: cover;" /><a
-                                                        class="item-link" href="{{ $item }}" data-glightbox
+                                                        class="item-link border" href="{{ $item }}" data-glightbox
                                                         data-gallery="product-group"><i class="uil uil-focus-add"></i></a>
                                                 </figure>
                                             </div>
@@ -50,10 +55,10 @@
                             </div>
                             <div class="col-lg-2 col-md-4 col-6">
                                 <div class="swiper-thumbs swiper-vertical">
-                                    <div class="swiper-wrapper">
+                                    <div class="swiper-wrapper" style="height: auto;">
                                         @forelse ($imageUrls as $item_thumb)
-                                            <div class="swiper-slide rounded p-2"><img src="{{ $item_thumb }}"
-                                                    class="" width="160" alt="thumb" />
+                                            <div class="swiper-slide rounded"><img class="p-1" src="{{ $item_thumb }}"
+                                                    class="img-fluid" style="height: 120px; width: 170px;" alt="thumb" />
                                             </div>
                                         @empty
                                             <div class="swiper-slide"><img src="{{ asset('assets/img/rooms/Bromo.jpg') }}"
@@ -74,12 +79,12 @@
 
                 </div> --}}
 
-                <div class="col-lg-10 mt-0">
+                <div class="col-lg-12 mt-4">
                     <div class="row">
 
                         <aside class="col-lg-6 col-md-4 sidebar text-start text-md-start text-sm-start">
-                            <div class="post-header mb-2 ms-4">
-                                <h2 class="post-title display-5"><a href="#" class="link-dark text-uppercase">
+                            <div class="post-header mb-2">
+                                <h2 class="post-title"><a href="#" class="link-dark text-uppercase">
                                         <i class="uil uil-house-user align-content-center"></i> {{ $room->name_room }} </a>
                                 </h2>
                                 <p class="price fs-20 text-capitalize">
@@ -126,8 +131,8 @@
 
                 </div>
                 <div class="col-lg-12 col-md-6">
-                    <div class="post-header mb-0 ms-4">
-                        <h4 class="post-title display-8"><i class="uil uil-cloud-info align-bottom"></i> Rooms include </h4>
+                    <div class="post-header mb-0">
+                        <h4 class="post-title display-8">Rooms include </h4>
                         {{-- fasilitas --}}
                         @forelse ($inc as $rf)
                             <p class="fs-16 text-capitalize badge bg-blue"><i class="uil uil-check-circle align-bottom"></i>
@@ -147,7 +152,7 @@
 
             </div>
             <!-- /.row -->
-            <ul class="nav nav-tabs nav-tabs-basic mt-8 p-2">
+            <ul class="nav nav-tabs nav-tabs-basic mt-8">
                 <li class="nav-item">
                     <a class="nav-link active" data-bs-toggle="tab" href="shop-product.html#tab1-1">Rooms Details</a>
                 </li>
@@ -158,7 +163,7 @@
             <!-- /.nav-tabs -->
             <div class="tab-content mt-0 mt-md-5">
                 <div class="tab-pane fade show active" id="tab1-1">
-                    <p>{{ $room->description }}</p>
+                    {!! str($room->description )->sanitizeHtml() !!}
 
                     @forelse ($tagRoom as $tg)
                         <p class="fs-14 badge bg-warning text-capitalize"><i class="uil uil-tag-alt align-bottom"></i>

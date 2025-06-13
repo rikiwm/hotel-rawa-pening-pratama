@@ -49,7 +49,7 @@ class CategoriResource extends Resource
                 Fieldset::make('Categori')
                 ->schema([
                         TextInput::make('name')->label('Name Categori Room')
-                        ->required()->placeholder('Example:Room / Villas / Ball Room')
+                        ->required()->placeholder('Example:Room / Villa / Ball Room')
                         ->maxLength(255),
                         TextInput::make('icon')->label('Icon Categori')->placeholder('Optional')
                         ->maxLength(255),

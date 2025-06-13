@@ -23,8 +23,8 @@ class StatsAppOverview extends BaseWidget
             Stat::make('Users', User::count())
             ->description('Users')
             ->color('warning'),
-            Stat::make('Rooms & Villas', Room::count())
-            ->description('Rooms & Villas')
+            Stat::make('Villa & Room', Room::count())
+            ->description('Villa & Room')
             ->color('warning'),
             Stat::make('Facilitas', Fasilitas::count())
             ->description('Facilitas')

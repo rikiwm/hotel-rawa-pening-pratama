@@ -26,7 +26,7 @@ return [
     'fasilitas' => 'Hotel Facilities',
     'vila_head' => 'PLAN YOUR GATEWAY',
     'vila_caption' => 'Step away from the hustle and into a world of peace. Unlike any other hotel in Bandungan, we boast a sprawling 1.9-hectare garden, a haven for nature lovers and families. Let your children explore the vast greenery, unwind amidst the calming sounds of nature, or relax with a book under the shade of a towering tree',
-    'vila_title' => 'Our Villas & Rooms',
+    'vila_title' => 'Our Villa & Room',
     'welcome_title' => 'Welcome To',
     'welcome_caption' => 'Welcome to Rawa Pening Pratama, a charming family-run hotel nestled amidst the cool mountain air of Bandungan. We offer a unique experience that blends serenity, comfort, and a touch of history. Suitable for families seeking a relaxing getaway and corporate productive retreat.',
 

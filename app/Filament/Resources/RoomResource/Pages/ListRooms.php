@@ -31,8 +31,8 @@ class ListRooms extends ListRecords
 
         $tabs = [
             null => Tab::make('All'),
-            'Rooms' => Tab::make()->query(fn ($query) => $query->where('type_room','=','1')),
-            'Villas' => Tab::make()->query(fn ($query) => $query->where('type_room','=','2')),
+            'Villa' => Tab::make()->query(fn ($query) => $query->where('type_room','=','2')),
+            'Room' => Tab::make()->query(fn ($query) => $query->where('type_room','=','1')),
 
         ];
 
